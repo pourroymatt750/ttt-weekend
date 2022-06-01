@@ -15,7 +15,7 @@ let winner
 
 /*------------------------ Cached Element References ------------------------*/
 //Squares on the board 
-const squareEls = document.querySelector('.sqr')
+const squareEls = document.querySelectorAll('.sqr')
 
 
 //Displays the game's status on the page
@@ -41,3 +41,28 @@ function init() {
 
 //Calls the init() function
 init()
+
+//State of game rendered to user
+function render() {
+    /**Loops through the board and changes the 
+     * square content based on if the sqaure is 
+     * chosen or not**/
+    board.forEach((square,idx)=> {
+       if (square === 1) {
+           squareEls[idx].textContent = 'X'
+       } else if (square === -1) {
+           squareEls[idx].textContent = 'O'
+       } 
+   });
+
+   /**Shows a message based on the current state 
+    * of the game**/
+   if (winner = null) {
+       messageEls.textContent = `It is player ${turn}'s turn!`
+   } else if (winner === 'T') {
+       messageEls.textContent = "Tie!"
+   } else {
+       messageEls.textContent = `Congrats ${turn}, you won!`
+   }
+
+}
