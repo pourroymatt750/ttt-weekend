@@ -14,7 +14,12 @@ let winner
 
 
 /*------------------------ Cached Element References ------------------------*/
-//Sqaures on the board 
+//Squares on the board 
+const squareEls = document.querySelector('.sqr')
+
+
+//Displays the game's status on the page
+const messageEls = document.querySelector('#message')
 
 
 /*----------------------------- Event Listeners -----------------------------*/
