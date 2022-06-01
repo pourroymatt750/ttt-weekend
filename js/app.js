@@ -48,8 +48,10 @@ const messageEls = document.querySelector('#message')
 
 
 /*----------------------------- Event Listeners -----------------------------*/
-
-
+//Event listener for the handleClick() function
+squareEls.forEach(square => {
+    square.addEventListener('click', handleClick)
+}) 
 
 /*-------------------------------- Functions --------------------------------*/
 //Initializes the state of the game 
@@ -89,5 +91,27 @@ function render() {
    } else {
        messageEls.textContent = `Congrats ${turn}, you won!`
    }
+}
 
+/**Function that when called on in the event 
+ * listener allows player to click on square**/
+function handleClick(evt) {
+   let sqIdx = evt.target.id.substring(2)
+   
+   if (board[sqIdx] !== null && winner !== null) {
+       return
+   }
+
+   board[sqIdx] = turn
+
+   turn = turn * (-1)
+
+   //getWinner()
+
+   render()
+}
+
+//Function that will decide winner of the game
+function getWinner() {
+    winningCombos.forEach
 }
