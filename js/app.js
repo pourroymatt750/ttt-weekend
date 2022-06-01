@@ -27,4 +27,17 @@ const messageEls = document.querySelector('#message')
 
 
 /*-------------------------------- Functions --------------------------------*/
+//Initializes the state of the game 
+function init() {
+    board = [
+        null, null, null,
+        null, null, null,
+        null, null, null
+    ]
+    turn = 1
+    winner = null
+    render()
+}
 
+//Calls the init() function
+init()
