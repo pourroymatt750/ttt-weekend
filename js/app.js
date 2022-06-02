@@ -66,6 +66,7 @@ function init() {
     render()
 }
 
+
 //Calls the init() function
 init()
 
@@ -84,7 +85,8 @@ function render() {
 
    /**Shows a message based on the current state 
     * of the game**/
-   if (winner = null) {
+   
+   if (winner === null) {
        messageEls.textContent = `It is player ${turn}'s turn!`
    } else if (winner === 'T') {
        messageEls.textContent = "Tie!"
@@ -98,7 +100,7 @@ function render() {
 function handleClick(evt) {
    let sqIdx = evt.target.id.substring(2)
    
-   if (board[sqIdx] !== null && winner !== null) {
+   if (board[sqIdx] !== null || winner !== null) {
        return
    }
 
@@ -106,12 +108,21 @@ function handleClick(evt) {
 
    turn = turn * (-1)
 
-   //getWinner()
+   winner = getWinner()
 
    render()
 }
 
 //Function that will decide winner of the game
 function getWinner() {
-    winningCombos.forEach
+    
+    for (let i=0; i < winningCombos.length; i++) {
+        let sum = board[winningCombos[i][0]] + board[winningCombos[i][1]] + board[winningCombos[i][2]]
+        if (sum === 3) {
+            return 1
+        } else  if (sum === -3) {
+            return -1
+        }
+    }
+    return null
 }
