@@ -13,16 +13,16 @@ const winningCombos = [
     //4th way
     [0, 1, 2],
 
-     //5th way
+    //5th way
     [3, 4, 5],
 
-     //6th way
+    //6th way
     [6, 7, 8],
 
-     //7th way
+    //7th way
     [0, 4, 8],
 
-     //8th way
+    //8th way
     [2, 4, 6]
 ]
 
@@ -46,12 +46,17 @@ const squareEls = document.querySelectorAll('.sqr')
 //Displays the game's status on the page
 const messageEls = document.querySelector('#message')
 
+//Allows reset button to appear on page
+const resetBtnEl = document.querySelector('#reset-button')
 
 /*----------------------------- Event Listeners -----------------------------*/
 //Event listener for the handleClick() function
 squareEls.forEach(square => {
     square.addEventListener('click', handleClick)
 }) 
+
+//Event listener for resetBtnEl() function
+resetBtnEl.addEventListener('click', init)
 
 /*-------------------------------- Functions --------------------------------*/
 //Initializes the state of the game 
@@ -80,18 +85,22 @@ function render() {
            squareEls[idx].textContent = 'X'
        } else if (square === -1) {
            squareEls[idx].textContent = 'O'
-       } 
+       } else {
+           squareEls[idx].textContent = ''
+       }
    });
 
    /**Shows a message based on the current state 
     * of the game**/
-   
+   //Sets 1 & -1 to X & O
+   let player = turn > 0 ? "X" : "O"
+   let playerWinner = winner > 0 ? 'X' : "O"
    if (winner === null) {
-       messageEls.textContent = `It is player ${turn}'s turn!`
+       messageEls.textContent = `It is Player ${player}'s turn!`
    } else if (winner === 'T') {
        messageEls.textContent = "Tie!"
    } else {
-       messageEls.textContent = `Congrats ${turn}, you won!`
+       messageEls.textContent = `Congrats Player ${playerWinner}, you won!`
    }
 }
 
@@ -106,9 +115,9 @@ function handleClick(evt) {
 
    board[sqIdx] = turn
 
-   turn = turn * (-1)
-
    winner = getWinner()
+
+   turn = turn * (-1)
 
    render()
 }
@@ -122,6 +131,8 @@ function getWinner() {
             return 1
         } else  if (sum === -3) {
             return -1
+        } else if (board.includes(null) === false) {
+            return 'T'
         }
     }
     return null
