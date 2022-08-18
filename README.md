@@ -5,3 +5,10 @@
 </div>
 
 <h2 align="center">Play Tic-Tac-Toe <a href="https://tic-tac-toe-mellivora.netlify.app/">HERE</a></h2>
+
+<div align="center">
+  <h2>Technologies Used:</h2>
+  <h3>- HTML</h3>
+  <h3>- CSS</h3>
+  <h3>- Javascript</h3>
+</div>
